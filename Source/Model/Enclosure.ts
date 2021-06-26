@@ -1,0 +1,30 @@
+
+class Enclosure extends Entity
+{
+	constructor(name: string, color: Color, box: Box)
+	{
+		super
+		(
+			name,
+			[
+				new Boundable(box),
+				Drawable.fromVisual
+				(
+					Enclosure.visualBuild(name, box.size, color)
+				),
+				Locatable.fromPos(box.center),
+			]
+		);
+	}
+
+	static visualBuild(name: string, size: Coords, color: Color): Visual
+	{
+		var colors = Color.Instances();
+		var returnValue = new VisualGroup
+		([
+			VisualRectangle.fromSizeAndColorFill(size, color),
+			VisualText.fromTextAndColors(name, colors.White, colors.Black),
+		]);
+		return returnValue;
+	}
+}
