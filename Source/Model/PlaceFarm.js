@@ -1,20 +1,20 @@
 "use strict";
 class PlaceFarm extends Place {
-    constructor(enclosures, feeds, animals, eggs) {
+    constructor(enclosures, feeds, animals) {
         super(PlaceFarm.name, PlaceFarm.defnBuild().name, Coords.fromXY(400, 300), // size
         // entities
         ArrayHelper.flattenArrayOfArrays([
             enclosures,
             feeds,
             animals,
-            eggs,
             [new UserInputListener()]
         ]));
         var enclosure0Box = enclosures[0].boundable().bounds;
         animals.forEach(x => {
             var constrainable = x.constrainable();
             var constraint = constrainable.constraints[0];
-            constraint.boxToContainWithin = enclosure0Box;
+            var constraintContain = constraint.child;
+            constraintContain.boxToContainWithin = enclosure0Box;
         });
     }
     static defnBuild() {
@@ -38,7 +38,9 @@ class PlaceFarm extends Place {
             Actor.name,
             Collidable.name,
             Constrainable.name,
-            Locatable.name
+            Locatable.name,
+            Phased.name,
+            Selector.name
         ];
         return PlaceDefn.from4(PlaceFarm.name, actions, actionToInputsMappings, entityPropertyNamesToProcess);
     }

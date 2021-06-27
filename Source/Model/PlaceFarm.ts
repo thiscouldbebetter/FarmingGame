@@ -5,8 +5,7 @@ class PlaceFarm extends Place
 	(
 		enclosures: Enclosure[],
 		feeds: Feed[],
-		animals: Animal[],
-		eggs: Egg[]
+		animals: Animal[]
 	)
 	{
 		super
@@ -20,7 +19,6 @@ class PlaceFarm extends Place
 				enclosures,
 				feeds,
 				animals,
-				eggs,
 				[ new UserInputListener() ]
 			])
 		);
@@ -30,8 +28,9 @@ class PlaceFarm extends Place
 		{
 			var constrainable = x.constrainable();
 			var constraint =
-				constrainable.constraints[0] as Constraint_ContainInBox;
-			constraint.boxToContainWithin = enclosure0Box;
+				constrainable.constraints[0] as Constraint_Switchable;
+			var constraintContain = constraint.child as Constraint_ContainInBox;
+			constraintContain.boxToContainWithin = enclosure0Box;
 		});
 	}
 
@@ -76,7 +75,9 @@ class PlaceFarm extends Place
 			Actor.name,
 			Collidable.name,
 			Constrainable.name,
-			Locatable.name
+			Locatable.name,
+			Phased.name,
+			Selector.name
 		];
 
 		return PlaceDefn.from4

@@ -64,7 +64,9 @@ var Orientation = gf.Orientation;
 var Polar = gf.Polar;
 var RangeExtent = gf.RangeExtent;
 var Rotation = gf.Rotation;
+var Constraint_AttachToEntityWithId = gf.Constraint_AttachToEntityWithId;
 var Constraint_ContainInBox = gf.Constraint_ContainInBox;
+var Constraint_Switchable = gf.Constraint_Switchable;
 // Geometry - Network.
 var Network = gf.Network;
 // Geometry - Shapes.
@@ -119,6 +121,7 @@ var EntityBuilder = gf.EntityBuilder;
 var EntityGenerator = gf.EntityGenerator;
 var Loadable = gf.Loadable;
 var Playable = gf.Playable;
+var Selectable = gf.Selectable;
 var Selector = gf.Selector;
 var Universe = gf.Universe;
 var UniverseWorldPlaceEntities = gf.UniverseWorldPlaceEntities;
@@ -154,6 +157,9 @@ var ItemStore = gf.ItemStore;
 // Model - Maps.
 var Terrain = gf.Terrain;
 // Model - Mortality.
+var Phase = gf.Phase;
+var Phased = gf.Phased;
+var Starvable = gf.Starvable;
 // Model - Perception.
 // Model - Physics.
 var Boundable = gf.Boundable;

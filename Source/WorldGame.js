@@ -10,7 +10,7 @@ class WorldGame extends World {
         return new WorldDefn([
             [
                 activityDefns.DoNothing,
-                Animal.activityDefnBuild(),
+                Animal.activityDefnBuildAdult(),
                 UserInputListener.activityDefnHandleUserInputBuild()
             ],
             [
@@ -37,8 +37,6 @@ class WorldGame extends World {
             new Feed(Coords.fromXY(100, 220))
         ], [
             new Animal(Coords.fromXY(50, 150))
-        ], [
-            new Egg(Coords.fromXY(50, 150))
         ]);
         return returnValue;
     }

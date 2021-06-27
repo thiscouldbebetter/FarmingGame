@@ -81,7 +81,9 @@ import Rotation = gf.Rotation;
 
 // Geometry - Constraints.
 import Constraint = gf.Constraint;
+import Constraint_AttachToEntityWithId = gf.Constraint_AttachToEntityWithId;
 import Constraint_ContainInBox = gf.Constraint_ContainInBox;
+import Constraint_Switchable = gf.Constraint_Switchable;
 
 // Geometry - Network.
 import Network = gf.Network;
@@ -151,6 +153,7 @@ import EntityGenerator = gf.EntityGenerator;
 import Loadable = gf.Loadable;
 import Namable = gf.Namable;
 import Playable = gf.Playable;
+import Selectable = gf.Selectable;
 import Selector = gf.Selector;
 import Universe = gf.Universe;
 import UniverseWorldPlaceEntities = gf.UniverseWorldPlaceEntities;
@@ -196,6 +199,9 @@ import ItemStore = gf.ItemStore;
 import Terrain = gf.Terrain;
 
 // Model - Mortality.
+import Phase = gf.Phase;
+import Phased = gf.Phased;
+import Starvable = gf.Starvable;
 
 // Model - Perception.
 

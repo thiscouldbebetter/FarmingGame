@@ -21,7 +21,7 @@ class WorldGame extends World
 		([
 			[
 				activityDefns.DoNothing,
-				Animal.activityDefnBuild(),
+				Animal.activityDefnBuildAdult(),
 				UserInputListener.activityDefnHandleUserInputBuild()
 			],
 			[
@@ -85,9 +85,6 @@ class WorldGame extends World
 			[
 				new Animal(Coords.fromXY(50, 150))
 			],
-			[
-				new Egg(Coords.fromXY(50, 150))
-			]
 		);
 
 		return returnValue;
