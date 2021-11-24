@@ -13,7 +13,7 @@ class Feed extends Entity
 		);
 	}
 
-	static visualBuild(): Visual
+	static visualBuild(): VisualBase
 	{
 		var cobLength = 10;
 		var cobWidth = cobLength * 0.4;

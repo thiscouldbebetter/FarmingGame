@@ -24,6 +24,7 @@ import ControlActionNames = gf.ControlActionNames;
 import ControlBase = gf.ControlBase;
 import ControlBuilder = gf.ControlBuilder;
 import ControlButton = gf.ControlButton;
+import ControlColorScheme = gf.ControlColorScheme;
 import ControlContainer = gf.ControlContainer;
 import ControlContainerTransparent = gf.ControlContainerTransparent;
 import ControlLabel = gf.ControlLabel;
@@ -50,6 +51,7 @@ import DisplayRecorder = gf.DisplayRecorder;
 import VenueFader = gf.VenueFader;
 import VenueLayered = gf.VenueLayered;
 import Visual = gf.Visual;
+import VisualBase = gf.VisualBase;
 
 // Display - Visuals.
 

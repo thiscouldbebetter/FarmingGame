@@ -20,22 +20,22 @@ class Animal extends Entity {
         var entityActor = uwpe.entity;
         var actor = entityActor.actor();
         var activity = actor.activity;
-        var targetEntity = activity.target();
+        var targetEntity = activity.targetEntity();
         if (targetEntity == null) {
             var randomizer = uwpe.universe.randomizer;
             var place = uwpe.place;
             var enclosure = entityActor.enclosure(place);
             var enclosureBounds = enclosure.boundable().bounds;
-            var targetPos = enclosureBounds.posRandom(randomizer);
+            var targetPos = enclosureBounds.pointRandom(randomizer);
             targetEntity = new Entity("Target", [Locatable.fromPos(targetPos)]);
-            activity.targetSet(targetEntity);
+            activity.targetEntitySet(targetEntity);
         }
         var movable = entityActor.movable();
         var actorLocatable = entityActor.locatable();
         var targetLocatable = targetEntity.locatable();
         var distanceToTarget = actorLocatable.approachOtherWithAccelerationAndSpeedMax(targetLocatable, movable.accelerationPerTick, movable.speedMax);
         if (distanceToTarget < movable.speedMax) {
-            activity.targetSet(null);
+            activity.targetEntitySet(null);
         }
         var phased = entityActor.phased();
         var phaseCurrentName = phased.phaseCurrent().name;
@@ -76,7 +76,7 @@ class Animal extends Entity {
             constraintContain.boxToContainWithin =
                 enclosureDroppedWithin.boundable().bounds;
         }
-        entityToDeselect.actor().activity.targetClear();
+        entityToDeselect.actor().activity.targetEntityClear();
     }
     static phasedBuild(phaseStartName) {
         return Phased.fromPhaseStartNameAndPhases(phaseStartName, [

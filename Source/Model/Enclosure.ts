@@ -17,7 +17,7 @@ class Enclosure extends Entity
 		);
 	}
 
-	static visualBuild(name: string, size: Coords, color: Color): Visual
+	static visualBuild(name: string, size: Coords, color: Color): VisualBase
 	{
 		var colors = Color.Instances();
 		var returnValue = new VisualGroup

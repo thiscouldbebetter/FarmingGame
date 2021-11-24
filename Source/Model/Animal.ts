@@ -35,7 +35,7 @@ class Animal extends Entity
 
 		var actor = entityActor.actor();
 		var activity = actor.activity;
-		var targetEntity = activity.target() as Entity;
+		var targetEntity = activity.targetEntity();
 		if (targetEntity == null)
 		{
 			var randomizer = uwpe.universe.randomizer;
@@ -44,13 +44,13 @@ class Animal extends Entity
 			var enclosure = entityActor.enclosure(place);
 			var enclosureBounds = enclosure.boundable().bounds;
 
-			var targetPos = enclosureBounds.posRandom(randomizer);
+			var targetPos = enclosureBounds.pointRandom(randomizer);
 
 			targetEntity = new Entity
 			(
 				"Target", [ Locatable.fromPos(targetPos) ]
 			);
-			activity.targetSet(targetEntity);
+			activity.targetEntitySet(targetEntity);
 		}
 
 		var movable = entityActor.movable();
@@ -66,7 +66,7 @@ class Animal extends Entity
 
 		if (distanceToTarget < movable.speedMax)
 		{
-			activity.targetSet(null);
+			activity.targetEntitySet(null);
 		}
 
 		var phased = entityActor.phased();
@@ -127,7 +127,7 @@ class Animal extends Entity
 			constraintContain.boxToContainWithin =
 				enclosureDroppedWithin.boundable().bounds as Box;
 		}
-		entityToDeselect.actor().activity.targetClear();
+		entityToDeselect.actor().activity.targetEntityClear();
 	}
 
 	static phasedBuild(phaseStartName: string): Phased
@@ -247,7 +247,7 @@ class Animal extends Entity
 
 	// Visuals.
 
-	static visualBuildAdult(): Visual
+	static visualBuildAdult(): VisualBase
 	{
 		var dimension = 20;
 		var bodyRadius = dimension / 2;
@@ -320,7 +320,7 @@ class Animal extends Entity
 		return returnValue;
 	}
 
-	static visualBuildCorpse(): Visual
+	static visualBuildCorpse(): VisualBase
 	{
 		var dimension = 20;
 		var bodyRadius = dimension / 2;
@@ -402,7 +402,7 @@ class Animal extends Entity
 		return returnValue;
 	}
 
-	static visualBuildEgg(): Visual
+	static visualBuildEgg(): VisualBase
 	{
 		var eggLength = 6;
 		var eggWidth = eggLength * .75;
@@ -421,7 +421,7 @@ class Animal extends Entity
 		return returnValue;
 	}
 
-	static visualBuildJuvenile(): Visual
+	static visualBuildJuvenile(): VisualBase
 	{
 		var dimension = 10;
 		var bodyRadius = dimension / 2;
@@ -481,7 +481,7 @@ class Animal extends Entity
 		return returnValue;
 	}
 
-	static visualBuildSenior(): Visual
+	static visualBuildSenior(): VisualBase
 	{
 		var dimension = 20;
 		var bodyRadius = dimension / 2;

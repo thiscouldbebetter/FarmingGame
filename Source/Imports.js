@@ -17,6 +17,7 @@ var ControlActionNames = gf.ControlActionNames;
 var ControlBase = gf.ControlBase;
 var ControlBuilder = gf.ControlBuilder;
 var ControlButton = gf.ControlButton;
+var ControlColorScheme = gf.ControlColorScheme;
 var ControlContainer = gf.ControlContainer;
 var ControlContainerTransparent = gf.ControlContainerTransparent;
 var ControlLabel = gf.ControlLabel;
@@ -119,7 +120,6 @@ var VisualSound = gf.VisualSound;
 // Model.
 var EntityBuilder = gf.EntityBuilder;
 var EntityGenerator = gf.EntityGenerator;
-var Loadable = gf.Loadable;
 var Playable = gf.Playable;
 var Selectable = gf.Selectable;
 var Selector = gf.Selector;
