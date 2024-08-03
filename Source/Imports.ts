@@ -162,6 +162,7 @@ import UniverseWorldPlaceEntities = gf.UniverseWorldPlaceEntities;
 import Venue = gf.Venue;
 import VenueWorld = gf.VenueWorld;
 import World = gf.World;
+import WorldCreator = gf.WorldCreator;
 import WorldDefn = gf.WorldDefn;
 
 // Model - Actors.
@@ -219,6 +220,7 @@ import Traversable = gf.Traversable;
 
 // Model - Places.
 import Place = gf.Place;
+import PlaceBase = gf.PlaceBase;
 import PlaceDefn = gf.PlaceDefn;
 import PlaceZoned = gf.PlaceZoned;
 import Zone = gf.Zone;

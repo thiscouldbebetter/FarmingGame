@@ -23,7 +23,7 @@ class Enclosure extends Entity
 		var returnValue = new VisualGroup
 		([
 			VisualRectangle.fromSizeAndColorFill(size, color),
-			VisualText.fromTextAndColors(name, colors.White, colors.Black),
+			VisualText.fromTextImmediateAndColors(name, colors.White, colors.Black),
 		]);
 		return returnValue;
 	}

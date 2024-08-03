@@ -1,7 +1,8 @@
 "use strict";
-class PlaceFarm extends Place {
+class PlaceFarm extends PlaceBase {
     constructor(enclosures, feeds, animals) {
-        super(PlaceFarm.name, PlaceFarm.defnBuild().name, Coords.fromXY(400, 300), // size
+        super(PlaceFarm.name, PlaceFarm.defnBuild().name, null, // parentName
+        Coords.fromXY(400, 300), // size
         // entities
         ArrayHelper.flattenArrayOfArrays([
             enclosures,
@@ -42,10 +43,11 @@ class PlaceFarm extends Place {
             Phased.name,
             Selector.name
         ];
-        return PlaceDefn.from4(PlaceFarm.name, actions, actionToInputsMappings, entityPropertyNamesToProcess);
+        return PlaceDefn.from5(PlaceFarm.name, null, // soundForMusicName
+        actions, actionToInputsMappings, entityPropertyNamesToProcess);
     }
     // Convenience methods.
     enclosures() {
-        return this.entities.filter((x) => (x.constructor.name == Enclosure.name));
+        return this.entitiesAll().filter((x) => (x.constructor.name == Enclosure.name));
     }
 }

@@ -1,5 +1,5 @@
 
-class PlaceFarm extends Place
+class PlaceFarm extends PlaceBase
 {
 	constructor
 	(
@@ -12,6 +12,7 @@ class PlaceFarm extends Place
 		(
 			PlaceFarm.name,
 			PlaceFarm.defnBuild().name,
+			null, // parentName
 			Coords.fromXY(400, 300), // size
 			 // entities
 			ArrayHelper.flattenArrayOfArrays
@@ -80,9 +81,10 @@ class PlaceFarm extends Place
 			Selector.name
 		];
 
-		return PlaceDefn.from4
+		return PlaceDefn.from5
 		(
 			PlaceFarm.name,
+			null, // soundForMusicName
 			actions,
 			actionToInputsMappings,
 			entityPropertyNamesToProcess
@@ -93,7 +95,7 @@ class PlaceFarm extends Place
 
 	enclosures(): Enclosure[]
 	{
-		return this.entities.filter
+		return this.entitiesAll().filter
 		(
 			(x: Entity) => (x.constructor.name == Enclosure.name)
 		) as Enclosure[];

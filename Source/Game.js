@@ -8,23 +8,8 @@ class Game {
         // deserialization of existing saved items after the schema changes.
         // localStorage.clear();
         var mediaFilePaths = this.mediaFilePathsBuild();
-        var mediaLibrary = MediaLibrary.fromFilePaths(mediaFilePaths);
-        var displaySizesAvailable = [
-            new Coords(400, 300, 1),
-            new Coords(640, 480, 1),
-            new Coords(800, 600, 1),
-            new Coords(1200, 900, 1),
-            // Wrap.
-            new Coords(200, 150, 1),
-        ];
-        var display = new Display2D(displaySizesAvailable, "Font", // fontName
-        10, // fontHeightInPixels
-        Color.byName("Gray"), Color.byName("White"), // colorFore, colorBack
-        null);
-        var timerHelper = new TimerHelper(20);
-        var controlBuilder = ControlBuilder.default();
-        var universe = Universe.create("Game", "0.0.0-20210407-0000", // version
-        timerHelper, display, mediaLibrary, controlBuilder, () => new WorldGame());
+        var mediaLibrary = MediaLibrary.fromMediaFilePaths(mediaFilePaths);
+        var universe = Universe.fromMediaLibraryAndWorldCreator(mediaLibrary, WorldCreator.fromWorldCreate((x, y) => new WorldGame()));
         universe.initialize(() => { universe.start(); });
     }
     mediaFilePathsBuild() {
@@ -36,9 +21,9 @@ class Game {
         var textStringDirectoryPath = contentDirectoryPath + "Text/";
         var videoDirectoryPath = contentDirectoryPath + "Video/";
         var mediaFilePaths = [
-            imageDirectoryPath + "Opening.png",
-            imageDirectoryPath + "Producer.png",
-            imageDirectoryPath + "Title.png",
+            imageDirectoryPath + "Titles/Opening.png",
+            imageDirectoryPath + "Titles/Producer.png",
+            imageDirectoryPath + "Titles/Title.png",
             soundEffectDirectoryPath + "Sound.wav",
             soundMusicDirectoryPath + "Music.mp3",
             soundMusicDirectoryPath + "Producer.mp3",

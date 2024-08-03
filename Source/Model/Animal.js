@@ -2,7 +2,7 @@
 class Animal extends Entity {
     constructor(pos) {
         super(Animal.name, [
-            Actor.create(),
+            Actor.default(),
             Animal.constrainableBuild(),
             Drawable.fromVisual(Animal.visualBuildEgg()),
             Locatable.fromPos(pos),
@@ -33,8 +33,10 @@ class Animal extends Entity {
         var movable = entityActor.movable();
         var actorLocatable = entityActor.locatable();
         var targetLocatable = targetEntity.locatable();
-        var distanceToTarget = actorLocatable.approachOtherWithAccelerationAndSpeedMax(targetLocatable, movable.accelerationPerTick, movable.speedMax);
-        if (distanceToTarget < movable.speedMax) {
+        var acceleration = movable.accelerationPerTick(uwpe);
+        var speedMax = movable.speedMax(uwpe);
+        var distanceToTarget = actorLocatable.approachOtherWithAccelerationAndSpeedMaxAndReturnDistance(targetLocatable, acceleration, speedMax);
+        if (distanceToTarget < speedMax) {
             activity.targetEntitySet(null);
         }
         var phased = entityActor.phased();
@@ -99,7 +101,7 @@ class Animal extends Entity {
                 actor.activity.defnName =
                     Animal.activityDefnBuildAdult().name;
                 var movable = entity.movable();
-                movable.speedMax = .5;
+                movable.speedMax = () => .5;
             }),
             new Phase("Adult", 10000, // durationInTicks
             // transition
@@ -108,7 +110,7 @@ class Animal extends Entity {
                 var drawable = entity.drawable();
                 drawable.visual = Animal.visualBuildAdult();
                 var movable = entity.movable();
-                movable.speedMax = 1;
+                movable.speedMax = () => 1;
             }),
             new Phase("Senior", 2000, // durationInTicks
             // update
@@ -117,7 +119,7 @@ class Animal extends Entity {
                 var drawable = entity.drawable();
                 drawable.visual = Animal.visualBuildSenior();
                 var movable = entity.movable();
-                movable.speedMax = .5;
+                movable.speedMax = () => .5;
             }),
             new Phase("Corpse", 1000, // durationInTicks
             // update
@@ -126,7 +128,7 @@ class Animal extends Entity {
                 var drawable = entity.drawable();
                 drawable.visual = Animal.visualBuildCorpse();
                 var movable = entity.movable();
-                movable.speedMax = 0;
+                movable.speedMax = () => 0;
             })
         ]);
     }
@@ -161,7 +163,7 @@ class Animal extends Entity {
             Coords.fromXY(-eyeRadius, 0),
             Coords.fromXY(eyeRadius, 0),
             Coords.fromXY(0, eyeRadius),
-        ], colors.Yellow));
+        ], colors.Yellow).shouldUseEntityOrientationSet(false));
         var visualComb = VisualOffset.fromOffsetAndChild(Coords.fromXY(pupilRadius, -bodyRadius), new VisualEllipse(eyeRadius / 2, eyeRadius, // horizontal, vertical semiaxes
         .125, // rotationInTurns
         colors.Red, null, // colors

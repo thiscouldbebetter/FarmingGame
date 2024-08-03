@@ -1,9 +1,8 @@
 "use strict";
 class WorldGame extends World {
     constructor() {
-        super("FarmingGame", DateTime.now(), WorldGame.defnBuild(), [
-            WorldGame.placeBuild()
-        ]);
+        super("FarmingGame", DateTime.now(), WorldGame.defnBuild(), (placeName) => WorldGame.placeBuild(), "" // placeInitialName
+        );
     }
     static defnBuild() {
         var activityDefns = ActivityDefn.Instances();
@@ -11,7 +10,7 @@ class WorldGame extends World {
             [
                 activityDefns.DoNothing,
                 Animal.activityDefnBuildAdult(),
-                UserInputListener.activityDefnHandleUserInputBuild()
+                UserInputListener.activityDefn()
             ],
             [
                 PlaceFarm.defnBuild()

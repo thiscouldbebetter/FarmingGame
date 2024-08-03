@@ -7,7 +7,7 @@ class Animal extends Entity
 		(
 			Animal.name,
 			[
-				Actor.create(),
+				Actor.default(),
 				Animal.constrainableBuild(),
 				Drawable.fromVisual(Animal.visualBuildEgg()),
 				Locatable.fromPos(pos),
@@ -29,7 +29,10 @@ class Animal extends Entity
 		return returnValue;
 	}
 
-	static activityDefnBuildAdult_Perform(uwpe: UniverseWorldPlaceEntities): void
+	static activityDefnBuildAdult_Perform
+	(
+		uwpe: UniverseWorldPlaceEntities
+	): void
 	{
 		var entityActor = uwpe.entity as Animal;
 
@@ -56,15 +59,17 @@ class Animal extends Entity
 		var movable = entityActor.movable();
 		var actorLocatable = entityActor.locatable();
 		var targetLocatable = targetEntity.locatable();
+		var acceleration = movable.accelerationPerTick(uwpe);
+		var speedMax = movable.speedMax(uwpe);
 		var distanceToTarget =
-			actorLocatable.approachOtherWithAccelerationAndSpeedMax
+			actorLocatable.approachOtherWithAccelerationAndSpeedMaxAndReturnDistance
 			(
 				targetLocatable,
-				movable.accelerationPerTick,
-				movable.speedMax
+				acceleration,
+				speedMax
 			);
 
-		if (distanceToTarget < movable.speedMax)
+		if (distanceToTarget < speedMax)
 		{
 			activity.targetEntitySet(null);
 		}
@@ -170,7 +175,7 @@ class Animal extends Entity
 							Animal.activityDefnBuildAdult().name;
 
 						var movable = entity.movable();
-						movable.speedMax = .5;
+						movable.speedMax = () => .5;
 					}
 				),
 
@@ -187,7 +192,7 @@ class Animal extends Entity
 						drawable.visual = Animal.visualBuildAdult();
 
 						var movable = entity.movable();
-						movable.speedMax = 1;
+						movable.speedMax = () => 1;
 					}
 				),
 
@@ -204,7 +209,7 @@ class Animal extends Entity
 						drawable.visual = Animal.visualBuildSenior();
 
 						var movable = entity.movable();
-						movable.speedMax = .5;
+						movable.speedMax = () => .5;
 					}
 				),
 
@@ -221,7 +226,7 @@ class Animal extends Entity
 						drawable.visual = Animal.visualBuildCorpse();
 
 						var movable = entity.movable();
-						movable.speedMax = 0;
+						movable.speedMax = () => 0;
 					}
 				)
 			]
@@ -293,7 +298,7 @@ class Animal extends Entity
 					Coords.fromXY(0, eyeRadius),
 				],
 				colors.Yellow
-			)
+			).shouldUseEntityOrientationSet(false)
 		);
 
 		var visualComb = VisualOffset.fromOffsetAndChild

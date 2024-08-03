@@ -8,9 +8,8 @@ class WorldGame extends World
 			"FarmingGame",
 			DateTime.now(),
 			WorldGame.defnBuild(),
-			[
-				WorldGame.placeBuild()
-			]
+			(placeName) => WorldGame.placeBuild(),
+			"" // placeInitialName
 		);
 	}
 
@@ -22,7 +21,7 @@ class WorldGame extends World
 			[
 				activityDefns.DoNothing,
 				Animal.activityDefnBuildAdult(),
-				UserInputListener.activityDefnHandleUserInputBuild()
+				UserInputListener.activityDefn()
 			],
 			[
 				PlaceFarm.defnBuild()
